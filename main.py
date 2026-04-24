@@ -2,13 +2,18 @@
 import time as tm
 import sys
 from art import text2art
-from strava_cz import StravaCZ
+from strava_cz import StravaCZ, AuthenticationError, MealType
+import os
+from dotenv import load_dotenv
 
 intro_text = "Hello, welcome to Strava.sh 🥘"
 
-user_id = "Your_username"
-user_password = "Your_password"
-user_canteen_num = "Your_canteen_number"
+load_dotenv()
+user_id = os.getenv("STRAVA_USERNAME")
+user_password = os.getenv("STRAVA_PASSWORD")
+user_canteen_num = os.getenv("STRAVA_CANTEEN_NUMBER")
+
+strava_log = ""
 
 def text_animation(text):
     for i in text:
@@ -20,20 +25,44 @@ def text_animation(text):
 def intro_text_ascii():    
     Cool_title = text2art("Strava.sh")
     print(Cool_title)
-    print()
 
 def strava_response_request():
-    strava_log = StravaCZ(
+    global strava_log
+    try:
+        strava_log = StravaCZ(
         username=user_id,
         password=user_password,
         canteen_number=user_canteen_num
-    )
+        )
     
-    print(strava_log.user)
+        print(strava_log.user)
+        print()
+
+    except AuthenticationError as error_mes:
+        print(f"Login failed: {error_mes}")
+    
+    
+def Logout():
+      global strava_log
+      strava_log.logout()
+
+def ordered_meal():
+    text_animation("These are your ordered meals:")
+    
+    strava_log.menu.fetch()
+    ordered_meals = strava_log.menu.get_meals(meal_types=[MealType.MAIN], ordered=True)
+    name_ordered_meals = []
+
+    for name in ordered_meals:
+        name_ordered_meals.append(name)
+
+    print(name_ordered_meals)
+    print()
+
 
 text_animation(intro_text)
 intro_text_ascii()
-text_animation("User info:")
 strava_response_request()
+ordered_meal()
 
-
+Logout()
