@@ -51,13 +51,12 @@ def ordered_meal():
     
     strava_log.menu.fetch()
     ordered_meals = strava_log.menu.get_meals(meal_types=[MealType.MAIN], ordered=True)
-    name_ordered_meals = []
 
-    for name in ordered_meals:
-        name_ordered_meals.append(name)
+    for meal in ordered_meals:
+        name = meal["name"]
+        date = meal["date"]
+        print(f"Date:{date}, Meal name:{name}")
 
-    print(name_ordered_meals)
-    print()
 
 
 text_animation(intro_text)
