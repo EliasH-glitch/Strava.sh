@@ -10,8 +10,6 @@ This recent version runs on *Python 3.14.3*. And some dependities (python librar
 
 Project is in early development. I will try to update the features as much as it will be possible. Check the to-do list below to see whats planned
 
-**Bug** - Gives all the info of ordered meals not only the names
-
 ### To-do list ✅
 - In app login
 - Autologin 🤓
