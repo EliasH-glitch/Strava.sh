@@ -13,7 +13,8 @@ user_id = os.getenv("STRAVA_USERNAME")
 user_password = os.getenv("STRAVA_PASSWORD")
 user_canteen_num = os.getenv("STRAVA_CANTEEN_NUMBER")
 
-strava_log = ""
+global strava_log 
+strava_log = "any data"
 
 def text_animation(text):
     for i in text:
@@ -35,18 +36,17 @@ def strava_response_request():
         canteen_number=user_canteen_num
         )
     
-        print(strava_log.user)
-        print()
 
     except AuthenticationError as error_mes:
         print(f"Login failed: {error_mes}")
     
     
 def Logout():
-      global strava_log
       strava_log.logout()
+      text_animation("Your are loged out now 🤓")
 
 def ordered_meal():
+
     text_animation("These are your ordered meals:")
     
     strava_log.menu.fetch()
@@ -58,10 +58,23 @@ def ordered_meal():
         print(f"Date:{date}, Meal name:{name}")
 
 
-
-text_animation(intro_text)
-intro_text_ascii()
 strava_response_request()
-ordered_meal()
 
-Logout()
+while True:
+    text_animation(intro_text)
+    intro_text_ascii()
+
+    action = int(input(f"What u want to know??\n1. Account info\n2. Ordered food\n3. Logout\n"))
+
+    if action == 1:
+        print(strava_log.user)
+
+    elif action == 2:
+        ordered_meal()
+    
+    elif action == 3:
+        Logout()
+        break
+
+    else:
+        print("Try again")
