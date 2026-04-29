@@ -8,7 +8,7 @@ This recent version runs on *Python 3.14.3*. And some dependities (python librar
 
 ## Current state
 
-Project is in early development. I will try to update the features as much as it will be possible. Check the to-do list below to see whats planned
+Project is in early development. I will try to update the features as much as it will be possible. Check the to-do list below to see whats planned 
 
 ### To-do list ✅
 - In app login
