@@ -51,11 +51,17 @@ def ordered_meal():
     
     strava_log.menu.fetch()
     ordered_meals = strava_log.menu.get_meals(meal_types=[MealType.MAIN], ordered=True)
+    soups = strava_log.menu.get_meals(meal_types=[MealType.SOUP])
+
+    position = 0
 
     for meal in ordered_meals:
         name = meal["name"]
         date = meal["date"]
-        print(f"Date:{date}, Meal name:{name}")
+        soup_dict = soups[position]
+        soup = soup_dict["name"]
+        print(f"Date:{date}:\n Soup: {soup}\n Meal name: {name}")
+        position += 1
 
 
 strava_response_request()
