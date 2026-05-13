@@ -13,8 +13,8 @@ Project is in early development. I will try to update the features as much as it
 ### To-do list ✅
 - In app login
 - Autologin 🤓
-- Full meal list and ordered meals (feature)
-- Ordering meals via app
+- Full meal list and ordered meals (feature) 🤓
+- Ordering meals via app 🤓
 - Filters and tweaks
 - Balance and user info more integrate
 
